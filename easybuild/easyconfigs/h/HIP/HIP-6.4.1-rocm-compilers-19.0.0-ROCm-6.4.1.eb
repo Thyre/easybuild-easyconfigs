@@ -32,7 +32,13 @@ default_easyblock = 'CMakeMake'
 
 components = [
     ('HIPCC', '%s' % _rocm_version, {
-        'sources': [{'filename': 'llvm-project-rocm-%(version)s.tar.gz', 'alt_location': 'ROCm-LLVM'}],
+        'sources': [
+            {
+                'source_urls': ['https://github.com/ROCm/llvm-project/archive/'],
+                'download_filename': 'rocm-%(version)s.tar.gz',
+                'filename': 'llvm-project-rocm-%(version)s.tar.gz'
+            },
+        ],
         'patches': [('HIP-6.3.3_correct_paths_clang_and_rocm_agent_enum.patch',
                      'llvm-project-rocm-%s' % _rocm_version)],
         'checksums': [
